@@ -22,19 +22,17 @@ function main() {
   const note = misskey_response[0]
 
   // LINE通知
-  UrlFetchApp.fetch('https://notify-api.line.me/api/notify',
-    {
-      'method': 'post',
-      'payload': {
-        'message': note.url
-          ? note.url
-          : note.user.host
-            ? `https://${note.user.host}/notes/${note.id}`
-            : `https://misskey.io/notes/${note.id}`
-      },
-      'headers': { 'Authorization': 'Bearer ' + properties.getProperty('LINE_ACCESS_TOKEN') }
-    }
-  )
+  UrlFetchApp.fetch('https://notify-api.line.me/api/notify', {
+    'method': 'post',
+    'payload': {
+      'message': note.url
+        ? note.url
+        : note.user.host
+          ? `https://${note.user.host}/notes/${note.id}`
+          : `https://misskey.io/notes/${note.id}`
+    },
+    'headers': { 'Authorization': 'Bearer ' + properties.getProperty('LINE_ACCESS_TOKEN') }
+  })
 
   // botなら無視
   if (note.user.isBot) {
