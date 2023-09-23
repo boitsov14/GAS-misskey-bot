@@ -66,17 +66,14 @@ function main() {
   update_since_id(note.id)
 
   // サーバへの送信
-  const response = UrlFetchApp.fetch(properties.getProperty('URL') + '/misskey',
-    {
-      'method': 'post',
-      'contentType': 'application/json',
-      'payload': JSON.stringify(payload),
-      'headers':
-      {
-        'Authorization': 'Bearer ' + properties.getProperty('PASSWORD')
-      }
+  const response = UrlFetchApp.fetch(properties.getProperty('URL') + '/misskey', {
+    'method': 'post',
+    'contentType': 'application/json',
+    'payload': JSON.stringify(payload),
+    'headers': {
+      'Authorization': 'Bearer ' + properties.getProperty('PASSWORD')
     }
-  )
+  })
   Logger.log(response)
 }
 
