@@ -5,18 +5,14 @@ function main() {
   const properties = PropertiesService.getScriptProperties()
 
   // Noteの検索
-  const misskey_response = JSON.parse(UrlFetchApp.fetch('https://misskey.io/api/notes/mentions',
-    {
-      'method': 'post',
-      'contentType': 'application/json',
-      'payload': JSON.stringify(
-        {
-          'i': properties.getProperty('MISSKEY_ACCESS_TOKEN'),
-          'sinceId': properties.getProperty('SINCE_ID')
-        }
-      )
-    }
-  ))
+  const misskey_response = JSON.parse(UrlFetchApp.fetch('https://misskey.io/api/notes/mentions', {
+    'method': 'post',
+    'contentType': 'application/json',
+    'payload': JSON.stringify({
+      'i': properties.getProperty('MISSKEY_ACCESS_TOKEN'),
+      'sinceId': properties.getProperty('SINCE_ID')
+    })
+  }))
   Logger.log(JSON.stringify(misskey_response))
 
   // Note数が0なら終了
