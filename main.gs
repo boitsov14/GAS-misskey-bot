@@ -55,11 +55,13 @@ function main() {
     return
   }
 
+  const txt = note.text.replaceAll('@sequent_bot', '').replaceAll('@misskey.io', '')
+
   // 送信するNoteの情報の設定
   const payload = {
     'id': note.id,
     'username': note.user.host ? '@' + note.user.username + '@' + note.user.host : '@' + note.user.username,
-    'txt': note.text
+    'txt': txt
   }
   Logger.log(payload)
 
